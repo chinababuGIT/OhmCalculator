@@ -1,0 +1,65 @@
+﻿@model HomeDepotOhmCalculator.Models.OhmDropDownData
+
+@{
+    ViewBag.Title = "Home Deopt Ohm Calculator";
+}
+
+<h2>Home Deopt Ohm Calculator</h2>
+<div>
+    <div class="resistor">
+        <div class="left"></div>
+        <div id="divBandFirst" class="band"></div>
+        <div id="divBandSecond" class="band"></div>
+        <div id="divBandThird" class="band"></div>
+        <div id="divBandFourth" class="band"></div>
+        <div class="right"></div>
+    </div>
+
+
+    <div class="drpClass">
+        <div>
+            @Html.Label("BandA", "Significant figure 1", htmlAttributes: new { @class = "BandLabelText" })
+            @Html.DropDownListFor(m => m.significantData, new SelectList(Model.significantData, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "drpFirstBand" })
+        </div>
+        <div>
+            @Html.Label("BandB", "Significant figure 2", htmlAttributes: new { @class = "BandLabelText" })
+            @Html.DropDownListFor(m => m.significantData, new SelectList(Model.significantData, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "drpSecondBand" })
+        </div>
+        <div>
+            @Html.Label("BandC", "Multiplier", htmlAttributes: new { @class = "BandLabelText" })
+            @Html.DropDownListFor(m => m.multiflierData, new SelectList(Model.multiflierData, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "drpThirdBand" })
+        </div>
+        <div>
+            @Html.Label("BandD", "Tolerance", htmlAttributes: new { @class = "BandLabelText" })
+            @Html.DropDownListFor(m => m.toleranceData, new SelectList(Model.toleranceData, "Key", "Value"), htmlAttributes: new { @class = "form-control", id = "drpFourthBand" })
+        </div>
+    </div>
+</div>
+<div id="divError"></div>
+<div>
+
+    <div id="divResult" class="resultClass">
+        <!--Resistance Values-->
+        <div>
+            <div>
+                @Html.Label("lblMininumResistance", "Minimum Resistance")
+            </div>
+            <div>
+                @Html.TextBox("txtMinimumResistance", "0", htmlAttributes: new { @class = "form-control" }) Ohms
+            </div>
+        </div>
+        <div>
+            <div>
+                @Html.Label("lblMaximumResistance", "Maximum Resistance")
+            </div>
+            <div>
+                @Html.TextBox("txtMaximumResistance", "0", htmlAttributes: new { @class = "form-control" }) Ohms
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/scripts/Custom_Scripts/OhmCalc_JS.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
